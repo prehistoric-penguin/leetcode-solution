@@ -17,11 +17,7 @@ public:
         }
         for (int i = 0;i < rows; ++i) {
             for (int j = 0; j < cols; ++j) {
-                if (board[i][j] == 'B') {
-                    board[i][j] = 'O';
-                } else if (board[i][j] == 'O') {
-                    board[i][j] = 'X';
-                }
+                board[i][j] = board[i][j] == 'B' ? 'O' : 'X';
             }
         }
     }
