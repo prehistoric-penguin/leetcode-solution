@@ -15,16 +15,15 @@ public:
         std::queue<std::pair<TreeNode*, int>> queue;
         queue.emplace(root, 1);
         int depth = 0;
+        TreeNode* tmp = nullptr;
         while (!queue.empty()) {
-            auto&& p = queue.front();
-            auto* n = p.first;
-            depth = p.second;
+            std::tie(tmp, depth) = queue.front();
             queue.pop();
-            if (!n->left && !n->right) {
+            if (!tmp->left && !tmp->right) {
                 break;
             }
-            if (n->left) queue.emplace(n->left, depth + 1);
-            if (n->right) queue.emplace(n->right, depth + 1);
+            if (tmp->left) queue.emplace(tmp->left, depth + 1);
+            if (tmp->right) queue.emplace(tmp->right, depth + 1);
         }
         return depth;
     }
