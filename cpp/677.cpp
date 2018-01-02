@@ -24,15 +24,14 @@ public:
     int sum(string prefix) {
         auto* p = &root;
         for (auto ch : prefix) {
-            if (!p->children[ch - 'a']) return 0;
             p = p->children[ch - 'a'].get();
+            if (!p) return 0;
         }
         return sum(p);
     }
     int sum(TrieNode* p) {
         if (!p) return 0;
-        auto total = 0;
-        if (p->is_leaf) total += p->val;
+        auto total = p->is_leaf ? p->val : 0;
         for (const auto& uptr : p->children) {
             if (uptr) {
                 total += sum(uptr.get());
